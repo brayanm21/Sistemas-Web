@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <link href="Style.css" rel="stylesheet" type="text/css">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script type="text/javascript" src="http://www.dynamicdrive.com/dynamicindex11/domdrag/dom-drag.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/lumen/bootstrap.min.css">
+	<script src="cindexCalculadora.js"></script>
+	<link rel="stylesheet" href="css/daygrid.min.css">
+    <link rel="stylesheet" href="css/fullcalendar.min.css">
+    <link rel="stylesheet" href="css/timegrid.min.css">
+    <script src="js/fullcalendar.min.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/daygrid.min.js"></script>
+    <script src="js/interaction.min.js"></script>
+    <script src="js/es.js"></script>
+    <script src="js/timegrid.min.js"></script>
+    <script src="js/list.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            var calendarEl = document.getElementById('calendar');
+            let calendar
+            calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [ 'bootstrap','interaction', 'dayGrid', 'timeGrid', 'list'],
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                locale: 'es',
+                buttonIcons: false, // show the prev/next text
+                navLinks: true,
+				
+				selectable: true,
+				selectMirror: true,
+				eventLimit: true,
+				select: function(arg) {	
+				var title = prompt('Titulo Evento:');
+				if (title) {
+				calendar.addEvent({
+				title: title,
+				start: arg.start,
+				end: arg.end,
+				allDay: arg.allDay
+			})
+        }
+        calendar.unselect()
+      },	
+                
+            })
+            calendar.render()
+			
+			
+        })
+    </script>
+	<script src="Operaciones.js"></script>
+    <title>Proyectos Unidos</title>
+  </head>
+  <body onload="init();">
+  
+	<br/>
+<div class="row">
+  <div class="col-1">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="btn btn-outline-dark active" id="list-Calculadora-list" data-toggle="list"  href="#list-Calculadora" onclick="CambioColorFondoCalculadora()" role="tab" aria-controls="home">Σ</a>
+      <a class="btn btn-outline-dark" id="list-Parimpar-list" data-toggle="list" href="#list-Parimpar"  onclick="CambioColorFondoParImpar()"  role="tab" aria-controls="profile">✎</a>
+      <a class="btn btn-outline-dark" id="list-Calendario-list" data-toggle="list" href="#list-Calendario" onclick="CambioColorFondoCalendario()" role="tab" aria-controls="messages">⚤</a>
+      <a class="btn btn-outline-dark" id="list-Notas-list" data-toggle="list" href="#list-Notas" onclick="CambioColorFondoNotas()" role="tab" aria-controls="settings">☯</a>
+    </div>
+  </div>
+  <div class="col-10">
+    <div class="tab-content" id="nav-tabContent">
+		<div class="tab-pane fade show active " id="list-Calculadora" role="tabpanel" aria-labelledby="list-Calculadora-list">
+	 <!-- Calculadora --> 
+	<div><div id= "calcu">
+	
+	<span id="respuesta"></span>
+	
+	<div class="d-flex  w-15" style="height: 50px;">
+	<button id ="ce" type="button" class="btn btn-outline-danger p-3 border ">ce</button>
+	</div>
+	<div class="d-flex justify-content-center w-15" style="height: 50px;">
+	<button id="7" type="button" class="btn btn-outline-primary p-3 border ">7</button>
+	<button id="8"  type="button" class="btn btn-outline-primary p-3 border">8</button>
+	<button id="9"  type="button" class="btn btn-outline-primary p-3 border">9</button>
+	<button id="mas" type="button" class="btn btn-outline-danger p-3 border">+</button>
+	</div>
+	<div class="d-flex justify-content-center w-15" style="height: 50px;">
+	<button id="4" type="button" class="btn btn-outline-primary p-3 border">4</button>
+	<button id="5" type="button" class="btn btn-outline-primary p-3 border">5</button>
+	<button id="6" type="button" class="btn btn-outline-primary p-3 border">6</button>
+	<button id="menos" type="button" class="btn btn-outline-danger p-3 border">-</button>
+	</div>
+	<div class="d-flex justify-content-center w-15 " style="height: 50px;">
+	<button id="1" type="button" class="btn btn-outline-primary p-3 border">1</button>
+	<button id="2" type="button" class="btn btn-outline-primary p-3 border">2</button>
+	<button id="3" type="button" class="btn btn-outline-primary p-3 border">3</button>
+	<button id="multiplicacion" type="button" class="btn btn-outline-danger p-3 border">x</button>
+	</div>
+	<div class="d-flex justify-content-center w-10 " style="height: 50px;">
+	<button id="punto" type="button" class="btn btn-outline-primary p-3 border">.</button>
+	<button id="0" type="button" class="btn btn-outline-primary p-3 border">0</button>
+	<button id="igual" type="button" class="btn btn-outline-warning p-3 border">=</button>
+	<button id="division" type="button" class="btn btn-outline-danger p-3 border">/</button>
+	</div>
+	
+	</div>
+	</div>
+	  <!-- Calculadora --> 
+		</div>
+
+		<div class="tab-pane fade" id="list-Parimpar" role="tabpanel" aria-labelledby="list-Parimpar-list">
+	 <!-- PARIMPAR -->  
+			<div id="datos" >
+	<span id="respuestaParImpar"></span>
+	
+	<div class="d-flex justify-content-center"><h1 class="h2 mb-5 font-weight-lighter text-white display-5">Numeros Pares e Impares</h1></div><!-- texto inicio -->
+	
+	<div class="input-group mb-3">
+	<div class="input-group-prepend">
+		<span class="btn btn-outline-danger" id="textop">Ingrece el Numero</span>
+	</div>
+		<input type="number" id= "valor" class="form-control btn btn-outline-danger" >
+		</div>
+		
+		<div class="d-flex justify-content-center"><button id="calcular" type="button" class="btn btn-outline-danger ">Calcular</button></div>
+		
+	</div>
+	  
+	  <!-- PARIMPAR -->  
+		</div>
+	  
+      <div class="tab-pane fade " id="list-Calendario" role="tabpanel" aria-labelledby="list-Notas-list">
+	  <!-- CALENDARIO --> 
+			<div class="container" Style="color: white; width:1000px; ">
+        <div  id="calendar"></div>
+    </div>
+	  </div>
+	  <!-- CALENDARIO --> 
+      <div class="tab-pane fade d-flex align-content-around flex-wrap" id="list-Notas" role="tabpanel" aria-labelledby="list-settings-list">
+	  <!-- Notas -->  
+		<div id="nuevo" class=""> Ingresa <b>Notas</b>!
+		<div id="nuevo" class=""> 
+					<button type="button" class="btn btn-outline-dark" onclick="createCard()">nuevo</button>
+			</div>	
+		</div>
+			
+	<!-- Notas --> 
+		
+	  </div>
+    </div>
+  </div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  </body>
+</html>
