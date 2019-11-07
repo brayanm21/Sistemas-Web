@@ -1,6 +1,6 @@
 # Sistemas-Web
 Combinación de programas web creados por html y js    
 CALCULADORA     
-pAR E IMPAR   
+PAR E IMPAR   
 CALENDARIO    
 NOTAS   
